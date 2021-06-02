@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="mainPhotoViewModel"
+            type="com.jvziyaoyao.picmove.store.MainPhotoViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:fitsSystemWindows="true"
+        android:background="@color/colorPrimary"
+        android:id="@+id/sp_page"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.jvziyaoyao.picmove.extend.OverScrollLayout
+            android:id="@+id/sp_container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/white"
+            app:layout_constraintBottom_toTopOf="@id/sp_bottom_wrap"
+            app:layout_constraintTop_toBottomOf="@id/sp_top_nav">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/sp_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </com.jvziyaoyao.picmove.extend.OverScrollLayout>
+
+        <TextView
+            android:id="@+id/sp_masker"
+            android:focusable="true"
+            android:clickable="true"
+            android:background="@color/fontGrayLess"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/sp_top_nav"
+            android:paddingLeft="@dimen/pL"
+            android:paddingRight="@dimen/pL"
+            android:paddingTop="@dimen/pXXL"
+            android:paddingBottom="@dimen/pXXL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/sp_back"
+                android:text="@string/icon_left"
+                android:textSize="@dimen/icon_xl"
+                android:textColor="@color/colorAccent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{ (v) -> mainPhotoViewModel.onSelActivityBack() }"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/sp_album_name"
+                android:text="@string/TXT_PHOTOS"
+                android:textSize="@dimen/fxl"
+                android:textColor="@color/colorAccent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/ps"
+                app:layout_constraintLeft_toRightOf="@id/sp_back"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/sp_ok"
+                android:text=""
+                android:textSize="@dimen/fxl"
+                android:textColor="@color/colorAccent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{ mainPhotoViewModel.SEL_PHOTO_LIST.size() > 0 ? View.VISIBLE : View.INVISIBLE }"
+                android:onClick="@{ (v) -> mainPhotoViewModel.getResult() }"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/sp_albums_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:elevation="@dimen/eL"
+            android:focusable="true"
+            android:clickable="true"
+            app:layout_constraintBottom_toTopOf="@id/sp_bottom_wrap"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent">
+
+            <com.jvziyaoyao.picmove.extend.OverScrollLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/sp_albums_list_rec"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+            </com.jvziyaoyao.picmove.extend.OverScrollLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/sp_bottom_wrap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/pXXL"
+            android:elevation="@dimen/eL"
+            android:focusable="true"
+            android:clickable="true"
+            android:outlineProvider="bounds"
+            android:visibility="@{ mainPhotoViewModel.MAIN_LOADING ? View.INVISIBLE : View.VISIBLE }"
+            android:background="@color/colorPrimary"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:visibility="@{ mainPhotoViewModel.SHOW_ALBUMS.size() > 1 ? View.VISIBLE : View.INVISIBLE }"
+                android:onClick="@{ (v) -> mainPhotoViewModel.onAlbumsListShow(v) }"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:text="@string/TXT_ALBUMS"
+                    android:textSize="@dimen/fxl"
+                    android:textColor="@color/colorAccent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <TextView
+                    android:id="@+id/sp_rt_icon"
+                    android:text="@string/icon_down"
+                    android:textSize="@dimen/icon_l"
+                    android:textColor="@color/colorAccent"
+                    android:layout_marginLeft="@dimen/ps"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:text="@string/TXT_PREVIEW"
+                android:textSize="@dimen/fxl"
+                android:textColor="@color/colorAccent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{ (v) -> mainPhotoViewModel.onPhotoPreview(v) }"
+                android:visibility="@{ mainPhotoViewModel.SEL_PHOTO_LIST.size() > 0 ? View.VISIBLE : View.INVISIBLE }"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toRightOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/sp_under_loading"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:elevation="@dimen/eXL"
+            android:clickable="true"
+            android:focusable="true"
+            android:visibility="@{ mainPhotoViewModel.MAIN_LOADING ? View.VISIBLE : View.INVISIBLE }"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/sp_top_nav">
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintVertical_bias="0.4"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

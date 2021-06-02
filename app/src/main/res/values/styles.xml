@@ -1,0 +1,33 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="pop_window_anim" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/popshow</item>
+        <item name="android:windowExitAnimation">@anim/pophide</item>
+    </style>
+
+    <style name="PhotoDialog" parent="@style/Theme.AppCompat.Light.Dialog.Alert">
+        <!--是否去除标题 -->
+        <item name="windowNoTitle">true</item>
+<!--        &lt;!&ndash;是否去除边框&ndash;&gt;-->
+<!--        <item name="android:windowFrame">@null</item>-->
+<!--        &lt;!&ndash;是否浮现在activity之上&ndash;&gt;-->
+<!--        <item name="android:windowIsFloating">true</item>-->
+<!--        &lt;!&ndash;是否模糊&ndash;&gt;-->
+<!--        <item name="android:backgroundDimEnabled">true</item>-->
+<!--        &lt;!&ndash; 背景透明 &ndash;&gt;-->
+<!--        <item name="android:background">#00000000</item>-->
+<!--        <item name="android:windowBackground">@android:color/transparent</item>-->
+<!--        &lt;!&ndash; 没有windowActionBar&ndash;&gt;-->
+<!--        <item name="windowActionBar">false</item>-->
+<!--        <item name="android:windowContentOverlay">@null</item>-->
+<!--        &lt;!&ndash; <item name="android:backgroundDimEnabled">false</item> &ndash;&gt;-->
+    </style>
+
+</resources>

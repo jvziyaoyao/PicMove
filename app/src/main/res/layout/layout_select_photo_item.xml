@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/spi_page"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/spi_img"
+        android:scaleType="centerCrop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/spi_sel_wrap"
+        android:visibility="invisible"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/fontGrayLess"
+            />
+
+        <TextView
+            android:text="@string/icon_img_sel_circle"
+            android:textColor="@color/fontLight"
+            android:textSize="@dimen/icon_m"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:layout_width="@dimen/photo_sel_item_sel_icon_size"
+            android:layout_height="@dimen/photo_sel_item_sel_icon_size"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/spi_sel_able"
+        android:visibility="invisible"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/photoSelectableMasker"
+            />
+
+        <TextView
+            android:text="@string/icon_img_sel_able_circle"
+            android:textColor="@color/fontLight"
+            android:textSize="@dimen/icon_m"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:layout_width="@dimen/photo_sel_item_sel_icon_size"
+            android:layout_height="@dimen/photo_sel_item_sel_icon_size"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/spi_sel_handler"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_width="@dimen/photo_sel_item_sel_icon_size"
+        android:layout_height="@dimen/photo_sel_item_sel_icon_size"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

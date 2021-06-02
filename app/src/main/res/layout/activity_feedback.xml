@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="feedbackViewModel"
+            type="com.jvziyaoyao.picmove.store.FeedbackViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/fd_page"
+        android:fitsSystemWindows="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/fd_top_nav"
+            android:paddingLeft="@dimen/pL"
+            android:paddingRight="@dimen/pL"
+            android:paddingTop="@dimen/pXXL"
+            android:paddingBottom="@dimen/pXXL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/fd_back"
+                android:text="@string/icon_left"
+                android:textSize="@dimen/icon_xl"
+                android:textColor="@color/colorAccent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{ v -> feedbackViewModel.goBack() }"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/setting_name"
+                android:text="@string/TXT_AF_TOP_TITLE"
+                android:textSize="@dimen/fxl"
+                android:textColor="@color/colorAccent"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:gravity="center"
+                android:layout_marginLeft="@dimen/ps"
+                app:layout_constraintLeft_toRightOf="@id/fd_back"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/fd_submit"
+                android:text="@string/TXT_SUBMIT"
+                android:textSize="@dimen/fxl"
+                android:textColor="@color/colorAccent"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:gravity="center"
+                android:layout_marginRight="@dimen/pL"
+                android:visibility="@{ (feedbackViewModel.BUG_INFO.length() &lt; 10 || feedbackViewModel.CONTACT_INFO.length() == 0) ? View.INVISIBLE : View.VISIBLE }"
+                android:onClick="@{ v -> feedbackViewModel.goCommit(v) }"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toRightOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ScrollView
+            android:id="@+id/fd_content"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fd_top_nav">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:padding="@dimen/pL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/fd_bug_desc"
+                        android:text="@string/TXT_AF_BUG_DESC"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/fd_bug_count"
+                        android:text="0/240"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="@{ feedbackViewModel.BUG_INFO.length() > 10 ? View.VISIBLE : View.INVISIBLE }"
+                        app:layout_constraintBaseline_toBaselineOf="@id/fd_bug_desc"
+                        app:layout_constraintRight_toRightOf="parent" />
+
+                    <TextView
+                        android:id="@+id/fd_bug_error"
+                        android:text="@string/TXT_AF_TEN_ERROR"
+                        android:textColor="@color/colorAccent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="@{ ((feedbackViewModel.BUG_INFO.length() > 10) || (feedbackViewModel.BUG_INFO.length() &lt; 1)) ? View.INVISIBLE : View.VISIBLE }"
+                        app:layout_constraintBaseline_toBaselineOf="@id/fd_bug_desc"
+                        app:layout_constraintRight_toRightOf="parent" />
+
+                    <TextView
+                        android:id="@+id/fd_bug_divider"
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:background="@color/fontGrayLess"
+                        android:layout_marginTop="@dimen/ps"
+                        app:layout_constraintTop_toBottomOf="@id/fd_bug_desc" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:background="@color/transparent"
+                        android:gravity="start"
+                        android:maxLength="240"
+                        android:hint="@string/TXT_AF_BUG_AREA_HIT"
+                        android:text="@={ feedbackViewModel.BUG_INFO }"
+                        android:layout_marginTop="@dimen/ps"
+                        app:layout_constraintTop_toBottomOf="@id/fd_bug_divider" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:background="@color/photoSelectableMasker"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/pm" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:padding="@dimen/pL"
+                    android:layout_marginTop="@dimen/pL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/fd_con_desc"
+                        android:text="@string/TXT_AF_CONTACT_INFO"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/fd_con_divider"
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:background="@color/fontGrayLess"
+                        android:layout_marginTop="@dimen/ps"
+                        app:layout_constraintTop_toBottomOf="@id/fd_con_desc" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:background="@color/transparent"
+                        android:gravity="start"
+                        android:maxLength="32"
+                        android:text="@={ feedbackViewModel.CONTACT_INFO }"
+                        android:layout_marginTop="@dimen/ps"
+                        android:hint="@string/TXT_AF_CONTACT_AREA"
+                        app:layout_constraintTop_toBottomOf="@id/fd_con_divider" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

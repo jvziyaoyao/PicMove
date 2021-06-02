@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="@dimen/pL"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/fni_text"
+        android:text="0/0"
+        android:textSize="@dimen/fxl"
+        android:textColor="@color/fontLight"
+        android:gravity="center"
+        android:paddingLeft="@dimen/pL"
+        android:paddingRight="@dimen/pL"
+        android:background="@drawable/shape_left_number_indicator_circle"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/left_indicator_height"/>
+
+</LinearLayout>

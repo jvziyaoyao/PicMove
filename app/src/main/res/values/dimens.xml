@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="pLL">26dp</dimen>
+    <dimen name="pXXL">20dp</dimen>
+    <dimen name="pXL">16dp</dimen>
+    <dimen name="pL">12dp</dimen>
+    <dimen name="pm">8dp</dimen>
+    <dimen name="ps">6dp</dimen>
+    <dimen name="pxs">4dp</dimen>
+    <dimen name="pxxs">2dp</dimen>
+    <dimen name="eXL">24dp</dimen>
+    <dimen name="eL">16dp</dimen>
+    <dimen name="em">8dp</dimen>
+    <dimen name="icon_xl">32sp</dimen>
+    <dimen name="icon_l">24sp</dimen>
+    <dimen name="icon_m">20sp</dimen>
+    <dimen name="flll">32sp</dimen>
+    <dimen name="fll">28sp</dimen>
+    <dimen name="fxxl">24sp</dimen>
+    <dimen name="fxl">20sp</dimen>
+    <dimen name="fl">18sp</dimen>
+    <dimen name="fm">16sp</dimen>
+    <dimen name="fs">14sp</dimen>
+    <dimen name="fxs">12sp</dimen>
+    <dimen name="fxxs">10sp</dimen>
+
+    <!-- UI界面 -->
+    <dimen name="photo_sel_item_sel_icon_size">28dp</dimen>
+    <dimen name="splash_logo_size">120dp</dimen>
+    <dimen name="block_size">6px</dimen>
+    <dimen name="left_indicator_height">36dp</dimen>
+
+</resources>

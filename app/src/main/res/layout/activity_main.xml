@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="mainViewModel"
+            type="com.jvziyaoyao.picmove.store.MainViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main_page"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        android:fitsSystemWindows="true"
+        tools:context=".activity.MainActivity">
+
+        <FrameLayout
+            android:id="@+id/main_top_nav"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:paddingLeft="@dimen/pL"
+            android:paddingRight="@dimen/pL"
+            android:paddingTop="@dimen/pXXL"
+            android:paddingBottom="@dimen/pXXL"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/main_top_normal_wrap"
+                android:visibility="@{ mainViewModel.MAIN_CAN_SELECT ? View.INVISIBLE : View.VISIBLE }"
+                android:paddingLeft="@dimen/pL"
+                android:paddingRight="@dimen/pL"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/main_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/TXT_HISTORY"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/fxl"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/main_more"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/icon_more"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/icon_l"
+                    android:onClick="@{ (v) -> mainViewModel.onMore(v) }"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/main_can_wrap"
+                android:visibility="@{ mainViewModel.MAIN_CAN_SELECT ? View.VISIBLE : View.INVISIBLE }"
+                android:paddingLeft="@dimen/pL"
+                android:paddingRight="@dimen/pL"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/main_can_cancel"
+                    android:text="@string/TXT_CANCEL"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/fxl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{ (v) -> mainViewModel.cancelSelect(v) }"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <TextView
+                    android:id="@+id/main_can_center_info"
+                    android:textColor="@color/fontLight"
+                    android:textSize="@dimen/fxl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <TextView
+                    android:id="@+id/main_can_all"
+                    android:text="@string/TXT_ALL"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/fxl"
+                    android:onClick="@{ (v) -> mainViewModel.selectAllOrNone(v) }"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </FrameLayout>
+
+        <com.jvziyaoyao.picmove.extend.OverScrollLayout
+            android:id="@+id/main_main_view_scroll"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/white"
+            app:layout_constraintBottom_toTopOf="@id/main_btn_menu_wrap"
+            app:layout_constraintTop_toBottomOf="@id/main_top_nav">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/main_show_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </com.jvziyaoyao.picmove.extend.OverScrollLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:background="@color/photoSelectableMasker"
+            android:layout_margin="@dimen/pxs"
+            android:onClick="@{ v -> mainViewModel.goSelect() }"
+            android:visibility="@{ mainViewModel.MAIN_PIC_MOVE_LIST.size() == 0 ? View.VISIBLE : View.INVISIBLE }"
+            app:layout_constraintLeft_toLeftOf="@id/main_main_view_scroll"
+            app:layout_constraintTop_toTopOf="@id/main_main_view_scroll">
+
+            <TextView
+                android:text="@string/icon_add"
+                android:textSize="@dimen/icon_xl"
+                android:textColor="@color/fontGrayWeak"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/main_loading"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:visibility="@{ mainViewModel.MAIN_LOADING ? View.VISIBLE : View.INVISIBLE }"
+            app:layout_constraintBottom_toBottomOf="@id/main_main_view_scroll"
+            app:layout_constraintTop_toTopOf="@id/main_main_view_scroll">
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintVertical_bias="0.4"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <FrameLayout
+            android:id="@+id/main_btn_menu_wrap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:clickable="true"
+            android:focusable="true"
+            android:outlineProvider="bounds"
+            android:padding="@dimen/pXXL"
+            android:elevation="@dimen/eL"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/main_btn_normal_wrap"
+                android:visibility="@{ mainViewModel.MAIN_CAN_SELECT ? View.INVISIBLE : View.VISIBLE }"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{ (v) -> mainViewModel.goSelect() }"
+                    android:text="@string/TXT_ADD"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/fxl"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{ (v) -> mainViewModel.renewPhoto(v) }"
+                    android:text="@string/TXT_AM_RENEW_ALL"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/fxl"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/main_btn_can_wrap"
+                android:visibility="@{ mainViewModel.MAIN_CAN_SELECT ? View.VISIBLE : View.INVISIBLE }"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/TXT_DELETE"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/fxl"
+                    android:visibility="@{ mainViewModel.MAIN_SEL_PIC_LIST.size() > 0 ? View.VISIBLE : View.INVISIBLE }"
+                    android:onClick="@{ v -> mainViewModel.deleteFromSelected(v) }"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/TXT_RENEW"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/fxl"
+                    android:onClick="@{ (v) -> mainViewModel.renewSelected(v) }"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

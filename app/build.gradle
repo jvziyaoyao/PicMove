@@ -1,0 +1,128 @@
+apply plugin: 'com.android.application'
+//GreenDao插件
+apply plugin: 'org.greenrobot.greendao'
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.2"
+
+    defaultConfig {
+        applicationId "com.jvziyaoyao.picmove"
+        minSdkVersion 24
+        targetSdkVersion 30
+        versionCode 2
+        versionName "1.0.2"
+
+        buildConfigField 'String', 'DB_NAME', '"pic_move.db"'
+        buildConfigField 'String', 'SHARE_TAG', '"SHARE_TAG_PIC_MOVE"'
+        buildConfigField 'String', 'SHARE_NO_VALUE', '"NO_VALUE"'
+        buildConfigField 'String', 'BASE_URL', '"http://www.jvziyaoyao.com"'
+        buildConfigField 'String', 'UPGRADE_URL', '"http://www.jvziyaoyao.com:8985/pic_move/version.json"'
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath true
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    //greendao配置
+    greendao {
+        //数据库版本号，升级时修改
+        schemaVersion 9
+        //生成的DAO，DaoMaster和DaoSession的包路径。默认与表实体所在的包路径相同
+        daoPackage 'com.jvziyaoyao.picmove.dao'
+        //生成源文件的路径。默认源文件目录是在build目录中的(build/generated/source/greendao)
+        targetGenDir 'src/main/java'
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+
+    // 外部引入
+    compileOnly 'org.projectlombok:lombok:1.18.12'
+    annotationProcessor 'org.projectlombok:lombok:1.18.12'
+
+    // glide
+//    implementation 'com.github.bumptech.glide:glide:4.5.0'
+//    annotationProcessor 'com.github.bumptech.glide:compiler:4.5.0'
+
+    implementation 'com.github.glassLake:PhotoPicker:1.0.3'
+
+    // navigation
+    implementation "androidx.navigation:navigation-fragment-ktx:2.3.0-alpha05"
+    implementation "androidx.navigation:navigation-ui-ktx:2.3.0-alpha05"
+
+    // 下拉刷新
+    implementation 'com.baoyz.pullrefreshlayout:library:1.2.0'
+
+    //类似微信图片预览框架
+    //https://github.com/wanglu1209/PhotoViewer
+    implementation 'com.github.wanglu1209:PhotoViewer:0.50'
+
+    implementation 'com.github.nesror:ImageViewer:0.3.2'
+
+    implementation 'com.github.chrisbanes:PhotoView:2.3.0'
+
+    // transferee
+    // 添加所有 module  [包括 Transferee、GlideImageLoader、PicassoImageLoader、UniversalImageLoader]
+    implementation 'com.github.Hitomis:transferee:1.6.1'
+    // 单独添加核心 module Transferee, 之后至少还需要添加以下三种图片加载器中的一种
+    implementation 'com.github.Hitomis.transferee:Transferee:1.6.1'
+
+    // RxJava 引用
+    implementation 'io.reactivex.rxjava2:rxjava:2.0.1'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+
+    // 内存泄漏
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.3'
+
+    // 权限框架
+    implementation "com.github.permissions-dispatcher:permissionsdispatcher:4.8.0"
+    annotationProcessor "com.github.permissions-dispatcher:permissionsdispatcher-processor:4.8.0"
+    // 权限框架
+    implementation 'com.github.tbruyelle:rxpermissions:0.10.2'
+
+    // dialog第三方库
+    implementation 'com.lxj:xpopup:2.2.21'
+    implementation 'com.google.android.material:material:1.3.0-alpha01'
+
+    // mime_type工具
+    // https://mvnrepository.com/artifact/eu.medsea.mimeutil/mime-util
+    implementation 'eu.medsea.mimeutil:mime-util:2.1.3'
+
+    //GreenDao依赖添加
+    implementation 'org.greenrobot:greendao:3.3.0'
+    implementation 'io.github.yuweiguocn:GreenDaoUpgradeHelper:v2.2.1'
+
+    // gson
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.2'
+
+
+}

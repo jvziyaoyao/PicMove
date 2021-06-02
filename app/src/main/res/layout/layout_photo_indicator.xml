@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/pi_page"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/pi_top_wrap"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/fontGrayLess"
+        android:paddingLeft="@dimen/pXXL"
+        android:paddingRight="@dimen/pXXL"
+        android:paddingTop="@dimen/pLL"
+        android:paddingBottom="@dimen/pLL"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/pi_back"
+            android:text="@string/icon_left"
+            android:textSize="@dimen/icon_xl"
+            android:textColor="@color/fontLight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/pi_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0/0"
+            android:textColor="@color/fontLight"
+            android:textSize="@dimen/fxl"
+            android:layout_marginLeft="@dimen/ps"
+            app:layout_constraintLeft_toRightOf="@id/pi_back"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/pi_send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="OK (12 Selected)"
+            android:textColor="@color/fontLight"
+            android:textSize="@dimen/fxl"
+            android:textAlignment="textEnd"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/pi_btn_wrap"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/fontGrayLess"
+        android:paddingLeft="@dimen/pXXL"
+        android:paddingRight="@dimen/pXXL"
+        android:paddingTop="@dimen/pLL"
+        android:paddingBottom="@dimen/pLL"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:id="@+id/pi_sel_wrap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent">
+
+            <TextView
+                android:id="@+id/pi_sel_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/TXT_SELECTED"
+                android:textColor="@color/fontLight"
+                android:textSize="@dimen/fxl"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/pi_sel_able_icon"
+                android:text="@string/icon_img_sel_able_circle"
+                android:textColor="@color/fontLight"
+                android:textSize="@dimen/icon_m"
+                android:layout_marginLeft="@dimen/pL"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/pi_sel_icon"
+                android:text="@string/icon_img_sel_circle"
+                android:textColor="@color/fontLight"
+                android:textSize="@dimen/icon_m"
+                android:layout_marginLeft="@dimen/pL"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
